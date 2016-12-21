@@ -15,9 +15,9 @@ export ZK_HOST
 # Check version of configurations and update them if needed
 ./scripts/check_and_update_solr_configs.py
 
-MEM_JAVA_PERCENT=30
-MEM_TOTAL_KB=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
-MEM_JAVA_KB=$(($MEM_TOTAL_KB * $MEM_JAVA_PERCENT / 100))
+#MEM_JAVA_PERCENT=30
+#MEM_TOTAL_KB=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+#MEM_JAVA_KB=$(($MEM_TOTAL_KB * $MEM_JAVA_PERCENT / 100))
 
 JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jolokia-jvm-1.3.2-agent.jar=port=8778,host=0.0.0.0"
 JAVA_OPTS="$JAVA_OPTS -Xloggc:/data/logs/solr_gc.log"
@@ -51,4 +51,4 @@ else
 fi
 
 # Start solr cloud instance
-/opt/solr/bin/solr start -cloud -f -s /data -m ${MEM_JAVA_KB}k -a "${JAVA_OPTS}"
+/opt/solr/bin/solr start -cloud -force -f -s /data -m ${MEM_JAVA} -a "${JAVA_OPTS}"

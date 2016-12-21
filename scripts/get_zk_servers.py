@@ -18,7 +18,7 @@ def get_cluster_list():
         request = urllib.request.Request(url)
         response = urllib.request.urlopen(request)
         code = response.getcode()
-        content = response.readall().decode('utf-8')
+        content = response.read().decode('utf-8')
         response.close()
         if code != 200:
             print('ERROR Received unexpected status code from Exhibitor: [{}]'.format(code))

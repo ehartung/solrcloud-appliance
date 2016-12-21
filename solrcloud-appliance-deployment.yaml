@@ -1,0 +1,60 @@
+apiVersion: "extensions/v1beta1"
+kind: Deployment
+metadata:
+  name: "solrcloud-appliance-1"
+  namespace: "example"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        application: "solrcloud-appliance"
+        release: "1"
+        version: "1.0.5"
+    spec:
+      containers:
+      - name: "solrcloud-appliance"
+        image: "registry.opensource.zalan.do/example/solrcloud-appliance:1.0.5"
+        env:
+          - name: "ZK_API"
+            value: "http://solrcloud-exhibitor:8181/exhibitor/v1"
+          - name : "ZK_CLIENT_TIMEOUT"
+            value: "60000"
+          - name: "SOLR_BASE_URL"
+            value: "http://solrcloud-appliance:8983/solr"
+          - name: "SOLR_BACKUP_BUCKET"
+            value: "solrcloud-backup-bucket"
+          - name: "BACKUP_INTERVAL"
+            value: "none"
+          - name: "RESTORE_LATEST_BACKUP"
+            value: "False"
+          - name: "MEM_JAVA"
+            value: "1G"
+        resources:
+          limits:
+            cpu: 300m
+            memory: 2Gi
+          requests:
+            cpu: 200m
+            memory: 2Gi
+        ports:
+        - containerPort: 8983
+        - containerPort: 8778
+        readinessProbe:
+          httpGet:
+            path: /solr/favicon.ico
+            port: 8983
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        volumeMounts:
+          - name: solrcloud-data
+            mountPath: /data
+            readOnly: false
+          - name: solrcloud-backup
+            mountPath: /backup
+            readOnly: false
+      volumes:
+        - name: solrcloud-data
+          emptyDir: {}
+        - name: solrcloud-backup
+          emptyDir: {}
