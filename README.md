@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/zalando-incubator/solrcloud-appliance.svg?branch=master)](https://travis-ci.org/zalando-incubator/solrcloud-appliance?branch=master)
-[![Coverage Status](https://codecov.io/github/zalando-incubator/solrcloud-appliance/coverage.svg?branch=master)](https://codecov.io/github/zalando-incubator/solrcloud-appliance?branch=master)
+[![Build Status](https://travis-ci.org/ehartung/solrcloud-appliance.svg?branch=master)](https://travis-ci.org/ehartung/solrcloud-appliance?branch=master)
+[![Coverage Status](https://codecov.io/github/ehartung/solrcloud-appliance/coverage.svg?branch=master)](https://codecov.io/github/ehartung/solrcloud-appliance?branch=master)
 
 # SolrCloud appliance for STUPS
 
