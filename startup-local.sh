@@ -29,7 +29,7 @@ MEM_JAVA_PERCENT=20
 MEM_TOTAL_KB=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
 MEM_JAVA_KB=$(($MEM_TOTAL_KB * $MEM_JAVA_PERCENT / 100))
 
-JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jolokia-jvm-1.3.2-agent.jar=port=8778,host=0.0.0.0"
+JAVA_OPTS="$JAVA_OPTS -javaagent:/opt/jolokia-jvm-1.3.7-agent.jar=port=8778,host=0.0.0.0"
 JAVA_OPTS="$JAVA_OPTS -Xloggc:/data/logs/solr_gc.log"
 JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote"
 JAVA_OPTS="$JAVA_OPTS -Dcom.sun.management.jmxremote.port=48983"

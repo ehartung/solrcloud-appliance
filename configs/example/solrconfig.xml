@@ -35,7 +35,7 @@
        that you fully re-index after changing this setting as it can
        affect both how text is indexed and queried.
   -->
-  <luceneMatchVersion>5.2.1</luceneMatchVersion>
+  <luceneMatchVersion>6.6.0</luceneMatchVersion>
 
   <!-- Data Directory
 
@@ -308,17 +308,6 @@
          will block until the first searcher is done warming.
       -->
     <useColdSearcher>false</useColdSearcher>
-
-    <!-- Max Warming Searchers
-
-         Maximum number of searchers that may be warming in the
-         background concurrently.  An error is returned if this limit
-         is exceeded.
-
-         Recommend values of 1-2 for read-only slaves, higher for
-         masters w/o cache warming.
-      -->
-    <maxWarmingSearchers>24</maxWarmingSearchers>
 
   </query>
 

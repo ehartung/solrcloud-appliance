@@ -75,7 +75,7 @@ SenzaComponents:
         networking: host
         environment:
           ZK_API: "{{Arguments.ZookeeperAPI}}"
-          ZK_CLIENT_TIMEOUT: 60000
+          ZK_CLIENT_TIMEOUT: 30000
           SOLR_BASE_URL: "{{Arguments.SolrBaseUrl}}"
           SOLR_BACKUP_BUCKET: "{{Arguments.SolrBackupBucket}}"
           BACKUP_INTERVAL: "{{Arguments.BackupInterval}}"

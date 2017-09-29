@@ -1,12 +1,14 @@
-FROM registry.opensource.zalan.do/stups/openjdk:8u66-b17-1-12
+FROM registry.opensource.zalan.do/stups/openjdk:1.8.0-131-7
 
 RUN apt-get update && apt-get install -y wget python3 unzip python3-pip
 
-RUN wget -q -O - http://www.mirrorservice.org/sites/ftp.apache.org/lucene/solr/5.4.1/solr-5.4.1.tgz | tar -xzf - -C /opt \
-    && mv /opt/solr-5.4.1 /opt/solr
+RUN wget -q -O - https://archive.apache.org/dist/lucene/solr/6.6.0/solr-6.6.0.tgz | tar -xzf - -C /opt \
+    && mv /opt/solr-6.6.0 /opt/solr
 RUN chmod -R 777 /opt/solr
 
-RUN wget -q -O /opt/jolokia-jvm-1.3.2-agent.jar "http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.3.2/jolokia-jvm-1.3.2-agent.jar"
+RUN wget -q -O /opt/jolokia-jvm-1.3.7-agent.jar "http://search.maven.org/remotecontent?filepath=org/jolokia/jolokia-jvm/1.3.7/jolokia-jvm-1.3.7-agent.jar"
+
+ADD solr.in.sh /opt/solr/bin/
 
 ADD solr.xml solr.xml
 ADD zoo.cfg zoo.cfg
