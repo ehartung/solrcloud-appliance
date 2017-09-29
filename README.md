@@ -124,7 +124,9 @@ unavailable or something else happens during deployment.
 
 1. Start Docker container with /startup-local.sh command parameter
 
-        $ docker run -p 8983:8983 -p 8778:8778 --net=host -v /data -it <tag> /startup-local.sh
+        $ mkdir backup
+        $ mkdir data
+        $ docker run -p 8983:8983 -p 8778:8778 --net=host -v data:/data -v backup:/backup -it <tag> /startup-local.sh
 
 
 ## 5 Backup of SolrCloud cluster

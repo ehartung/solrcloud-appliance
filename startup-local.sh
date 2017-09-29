@@ -64,4 +64,4 @@ fi
 echo
 echo "You can access Solr via http://$(hostname -i):8983/solr" >&2
 echo 
-/opt/solr/bin/solr start -f -s /data -m ${MEM_JAVA_KB}k -a "${JAVA_OPTS}"
+/opt/solr/bin/solr start -force -f -s /data -m ${MEM_JAVA_KB}k -a "${JAVA_OPTS}"

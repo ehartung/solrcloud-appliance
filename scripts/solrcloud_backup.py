@@ -92,6 +92,10 @@ class BackupController:
 
     def __backup_local_shards(self, timestamp: str):
         logging.info('Start creating local backup for timestamp [{}].'.format(timestamp))
+        backup_dir = BACKUP_ROOT_DIR + timestamp
+        if not os.path.isdir(backup_dir):
+            os.makedirs(backup_dir)
+
         for core_name in self.__get_local_cores():
             sharded_regex_match = re.match(REGEX_SHARDED_CORES, core_name)
             single_regex_match = re.match(REGEX_SINGLE_CORE, core_name)
@@ -109,7 +113,7 @@ class BackupController:
                 raise Exception('Unknown core name format [{}]'.format(core_name))
 
             url = LOCAL_URL + '/' + core_name + '/replication?command=backup&wt=json'
-            url += '&location=' + BACKUP_ROOT_DIR + timestamp
+            url += '&location=' + backup_dir
             url += '&name=' + full_shard_name
             logging.info('Creating backup for [{}] ...'.format(full_shard_name))
             self.__send_http_request(url)
